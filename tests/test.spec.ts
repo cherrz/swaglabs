@@ -21,3 +21,9 @@ test('Checking if the all six products are displayed', async ({ page }) => {
   expect(await page.locator('.inventory_item').count()).toBe(6); //check if the all 6 prodcuts are visible on the site
 });
 
+test('Adding all products to cart', async ({ page }) => {
+});
+
+test('Checking sorting options', async ({ page }) => {
+});
+
