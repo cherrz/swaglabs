@@ -1,0 +1,13 @@
+{
+  "name": "swag-labs",
+  "version": "1.0.0",
+  "description": "This is a test automation project I did after work hours to continually develop and learn automation.",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.37.1"
+  }
+}
