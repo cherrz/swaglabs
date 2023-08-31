@@ -22,8 +22,20 @@ test('Checking if the all six products are displayed', async ({ page }) => {
 });
 
 test('Adding all products to cart', async ({ page }) => {
+  await page.goto(siteURL); // go to the site
+  await page.getByPlaceholder('Username').fill(login); // enter login into field
+  await page.getByPlaceholder('Password').fill(passsword); //enter password into field
+  await page.locator('#login-button').click(); // click on the submit button
+  const productButtons = page.locator('.btn_inventory');
+
+  for (let i = 0; i < await productButtons.count(); i++) {
+    await productButtons.nth(i).click();
+  }
+
+  await page.locator('a.shopping_cart_link').click();
+  expect(await page.locator('div.cart_item').count()).toBe(6);
 });
 
-test('Checking sorting options', async ({ page }) => {
-});
 
+// test('Checking sorting options', async ({ page }) => {
+// });
