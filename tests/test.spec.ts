@@ -36,6 +36,7 @@ test('Adding all products to cart', async ({ page }) => {
   expect(await page.locator('div.cart_item').count()).toBe(6);
 });
 
+//test
 
 // test('Checking sorting options', async ({ page }) => {
 // });
