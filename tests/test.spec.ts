@@ -36,7 +36,26 @@ test('Adding all products to cart', async ({ page }) => {
   expect(await page.locator('div.cart_item').count()).toBe(6);
 });
 
-//test
+test.only('Checkout & finish', async ({ page }) => {
+  await page.goto(siteURL); // go to the site
+  await page.getByPlaceholder('Username').fill(login); // enter login into field
+  await page.getByPlaceholder('Password').fill(passsword); //enter password into field
+  await page.locator('#login-button').click(); // click on the submit button
+  await expect(page.getByText('Products')).toBeVisible(); // check if the login was successful
+  const productButtons = page.locator('.btn_inventory');// locate all add to card buttons
 
-// test('Checking sorting options', async ({ page }) => {
-// });
+  for (let i = 0; i < await productButtons.count(); i++) { // adding all elements one by one to the cart
+    await productButtons.nth(i).click();
+  }
+
+  await page.locator('a.shopping_cart_link').click(); // going to the cart
+  expect(await page.locator('div.cart_item').count()).toBe(6); //checking if in the cart there are all 6 elements
+  await page.locator('#checkout').click(); // go to the checkout
+  await page.locator('#first-name').fill('David'); // filling field with name
+  await page.locator('#last-name').fill('Testerski'); // filling field with last name
+  await page.locator('#postal-code').fill('21-500'); // filling postal code
+  await page.locator('#continue').click(); // going further
+  await expect(page.locator('.summary_subtotal_label')).toContainText('$129.94');
+  await page.getByText('Finish').click();
+  await expect(page.getByText('Thank you for your order!')).toBeVisible();
+});
