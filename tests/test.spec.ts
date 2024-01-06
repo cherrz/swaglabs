@@ -36,7 +36,7 @@ test('Adding all products to cart', async ({ page }) => {
   expect(await page.locator('div.cart_item').count()).toBe(6);
 });
 
-test.only('Checkout & finish', async ({ page }) => {
+test('Checkout & finish', async ({ page }) => {
   await page.goto(siteURL); // go to the site
   await page.getByPlaceholder('Username').fill(login); // enter login into field
   await page.getByPlaceholder('Password').fill(passsword); //enter password into field
@@ -55,7 +55,7 @@ test.only('Checkout & finish', async ({ page }) => {
   await page.locator('#last-name').fill('Testerski'); // filling field with last name
   await page.locator('#postal-code').fill('21-500'); // filling postal code
   await page.locator('#continue').click(); // going further
-  await expect(page.locator('.summary_subtotal_label')).toContainText('$129.94');
-  await page.getByText('Finish').click();
-  await expect(page.getByText('Thank you for your order!')).toBeVisible();
+  await expect(page.locator('.summary_subtotal_label')).toContainText('$129.94'); //checking if the summary is correct
+  await page.getByText('Finish').click(); //clicking on finish order
+  await expect(page.getByText('Thank you for your order!')).toBeVisible(); //checking if confirmation message is displayed
 });
