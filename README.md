@@ -1,6 +1,6 @@
 # Swag Labs 
 
-This is a test automation project I did after work hours to continually develop and learn automation.
+This is a test automation project from the course. My first steps in the automation. Love it. 
 
 ## Tools
 
